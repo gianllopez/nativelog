@@ -2,6 +2,8 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useFonts } from 'expo-font';
+import { Ubuntu_400Regular, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
 import { Login } from './src/screens';
 
 const isAndroid = Platform.OS === 'android',
@@ -16,7 +18,13 @@ styles = StyleSheet.create({
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
+
+  const [loadedFonts] = useFonts({
+    'Ubuntu': Ubuntu_400Regular,
+    'Ubuntu Bold': Ubuntu_700Bold
+  });
+
+  return ( loadedFonts &&
     <NavigationContainer>
       <View style={styles.mainContainer}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -25,4 +33,5 @@ export default function App() {
       </View>
     </NavigationContainer>
   );
+
 };
