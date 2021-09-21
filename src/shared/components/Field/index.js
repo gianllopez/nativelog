@@ -1,36 +1,33 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { TextInput, Animated } from 'react-native';
+import styles from './styles';
 
-const styles = StyleSheet.create({
-  field: {
-    justifyContent: 'center',
-    width: '85%', height: 50,
-    backgroundColor: '#E5E5E5',
-    borderRadius: 7
-  },
-  label: {
-    position: 'absolute',
-    marginLeft: 10,
-    fontFamily: 'Ubuntu',
-    color: '#929292'
-  },
-  input: { flex: 1, paddingLeft: 10 }
-});
+export function Field(props) {
 
-export function Field() {
+  let { placeholder } = props;
 
+  const [fieldAnim] = useState(new Animated.Value(50));
   const [focused, setFocused] = useState(false);
 
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fieldAnim, {
+        toValue: focused ? 60 : 50,
+        duration: 250,
+        useNativeDriver: false
+      })
+    ]).start();
+  }, [focused]);
+
   return (
-    <View style={styles.field}>
-      <Text style={styles.label}>
-        Name
-      </Text>
+    <Animated.View style={[styles.field, { height: fieldAnim }]}>
       <TextInput
         style={styles.input}
+        placeholder={placeholder}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
       />
-    </View>
+    </Animated.View>
   );
+
 };

@@ -1,21 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
+import { FormButton } from '../../shared/components/FormButton';
 import { Field } from '../../shared/components/Field';
-
-const styles = StyleSheet.create({
-  loginForm: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  formImage: { width: 85, height: 85 },
-  formText: {
-    fontFamily: 'Ubuntu Bold',
-    fontSize: 20,
-    marginTop: 5,
-    marginBottom: 10
-  }
-});
+import styles from './styles';
 
 const userIcon = require('../../assets/user-icon.png');
 
@@ -26,7 +13,13 @@ export function Login() {
       <Text style={styles.formText}>
         Fill the form to continue
       </Text>
-      <Field/>
+      <Field placeholder="Username"/>
+      <Field placeholder="Password"/>
+      <FormButton/>
+      <Text style={styles.bottomText}>
+        Still not registered?
+        <Text style={styles.logUpAnchor}> Let's do it!</Text>
+      </Text>
     </View>
   );
 };
