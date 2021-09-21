@@ -6,7 +6,10 @@ import styles from './styles';
 
 const userIcon = require('../../assets/user-icon.png');
 
-export function Login() {
+export function Login({ navigation }) {
+
+  const toLogupForm = () => { navigation.navigate('logup') };
+
   return (
     <View style={styles.loginForm}>
       <Image source={userIcon} style={styles.formImage}/>
@@ -17,9 +20,12 @@ export function Login() {
       <Field placeholder="Password"/>
       <FormButton/>
       <Text style={styles.bottomText}>
-        Still not registered?
-        <Text style={styles.logUpAnchor}> Let's do it!</Text>
+        Still not registered? {' '}
+        <Text style={styles.logUpAnchor} onPress={toLogupForm}>
+          Let's do it!
+        </Text>
       </Text>
     </View>
   );
+
 };
