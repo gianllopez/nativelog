@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
-export default StyleSheet.create({
-  loginForm: {
+export const formStyles = StyleSheet.create({
+  form: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
@@ -13,10 +13,10 @@ export default StyleSheet.create({
     marginTop: 5,
     marginBottom: 10
   },
-  bottomText: {
+  formAnchorText: {
     marginTop: 10,
     fontFamily: 'Ubuntu Bold',
     fontSize: 15
   },
-  logUpAnchor: { color: '#4A80AA' }
+  formAnchor: { color: '#4A80AA' }
 });
