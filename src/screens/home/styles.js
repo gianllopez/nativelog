@@ -15,7 +15,6 @@ export default StyleSheet.create({
     width: 225, height: 175,
     resizeMode: 'center',
     marginVertical: 10
-    
   },
   description: {    
     fontFamily: 'Ubuntu',
