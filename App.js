@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useFonts } from 'expo-font';
 import { Ubuntu_400Regular, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
-import { Login, Logup } from './src/screens';
+import { Home, Login, Logup } from './src/screens';
 
 const isAndroid = Platform.OS === 'android',
 barHeight = StatusBar.currentHeight,
@@ -30,6 +30,7 @@ export default function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="login" component={Login}/>
           <Stack.Screen name="logup" component={Logup}/>
+          <Stack.Screen name="home" component={Home}/>
         </Stack.Navigator>
       </View>
     </NavigationContainer>
