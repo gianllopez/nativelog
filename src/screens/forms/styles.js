@@ -16,7 +16,7 @@ export const formStyles = StyleSheet.create({
   formAnchorText: {
     marginTop: 10,
     fontFamily: 'Ubuntu Bold',
-    fontSize: 15
+    fontSize: 16
   },
   formAnchor: { color: '#4A80AA' }
 });

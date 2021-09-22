@@ -6,7 +6,10 @@ import { formStyles } from '../styles';
 
 const logupIcon = require('../../../assets/logup-icon.png');
 
-export function Logup() {
+export function Logup({ navigation }) {
+
+  const toLoginForm = () => { navigation.navigate('login') };
+
   return (
     <View style={formStyles.form}>
       <Image source={logupIcon} style={formStyles.formImage}/>
@@ -20,10 +23,11 @@ export function Logup() {
       <FormButton/>
       <Text style={formStyles.formAnchorText}>
         Already registered? {''}
-        <Text style={formStyles.formAnchor}>
+        <Text style={formStyles.formAnchor} onPress={toLoginForm}>
           Log in!
         </Text>
       </Text>
     </View>
   );
+
 };
