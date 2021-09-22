@@ -1,47 +1,9 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { GithubLogo } from '../../shared/utils/vectors';
+import { GithubLogo } from '../../shared/components/vectors';
+import styles from './styles';
 
 const homeIcon = require('../../assets/home-icon.png');
-
-const styles = StyleSheet.create({
-  homeScreen: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white'
-  },
-  homeText: {
-    fontFamily: 'Ubuntu',
-    fontSize: 27
-  },
-  homeImage: {
-    width: 125, height: 125,
-    marginVertical: 10
-  },
-  description: {    
-    fontFamily: 'Ubuntu',
-    textAlign: 'center',
-    fontSize: 18,
-    width: '95%'
-  },
-  srcButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#0D1117',
-    width: '90%',
-    marginTop: 10,
-    borderRadius: 7,
-    height: 50
-  },
-  srcButtonText: {
-    fontFamily: 'Ubuntu Bold',
-    color: 'white',
-    marginRight: 10,
-    fontSize: 20
-  }
-});
 
 export function Home() {
   return (
