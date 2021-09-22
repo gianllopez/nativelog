@@ -9,14 +9,12 @@ export function Field(props) {
   const [fieldAnim] = useState(new Animated.Value(50));
   const [focused, setFocused] = useState(false);
 
-  useEffect(() => {
-    Animated.parallel([
-      Animated.timing(fieldAnim, {
-        toValue: focused ? 60 : 50,
-        duration: 250,
-        useNativeDriver: false
-      })
-    ]).start();
+  useEffect(() => {    
+    Animated.timing(fieldAnim, {
+      toValue: focused ? 60 : 50,
+      duration: 250,
+      useNativeDriver: false
+    }).start();
   }, [focused]);
 
   return (

@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import { FormButton } from '../../../shared/components/FormButton';
-import { Field } from '../../../shared/components/Field';
+import { Field, FormButton } from '../../../shared/components';
 import { formStyles } from '../styles';
 
 const loginIcon = require('../../../assets/login-icon.png');

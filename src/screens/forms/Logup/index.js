@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
-import { Field } from '../../../shared/components/Field';
-import { FormButton } from '../../../shared/components/FormButton';
+import { Field, FormButton } from '../../../shared/components';
 import { formStyles } from '../styles';
 
 const logupIcon = require('../../../assets/logup-icon.png');
