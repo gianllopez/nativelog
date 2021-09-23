@@ -4,7 +4,7 @@ import styles from './styles';
 
 export function Field(props) {
 
-  let { placeholder } = props;
+  let { onChange, onBlur, value, placeholder } = props;
 
   const [fieldAnim] = useState(new Animated.Value(50));
   const [focused, setFocused] = useState(false);
@@ -12,7 +12,7 @@ export function Field(props) {
   useEffect(() => {    
     Animated.timing(fieldAnim, {
       toValue: focused ? 60 : 50,
-      duration: 250,
+      duration: 225,
       useNativeDriver: false
     }).start();
   }, [focused]);
@@ -20,10 +20,12 @@ export function Field(props) {
   return (
     <Animated.View style={[styles.field, { height: fieldAnim }]}>
       <TextInput
+        value={value}
         style={styles.input}
+        onChangeText={onChange}
         placeholder={placeholder}
         onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
+        onBlur={e => { onBlur(e); setFocused(false) }}
       />
     </Animated.View>
   );
