@@ -1,9 +1,9 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
-import { Formik } from 'formik';
+import { useFormik } from 'formik';
+import { LogupSchema } from '../../../shared/schemas';
 import { Field, FormButton } from '../../../shared/components';
 import { formStyles } from '../styles';
-import { Fragment } from 'react';
 
 const logupIcon = require('../../../assets/logup-icon.png');
 
@@ -15,7 +15,7 @@ const INITIAL_FORM = {
   password: ''
 };
 
-export function Logup({ navigation }) {
+export function Logup({ navigation }) {  
 
   const toLoginForm = () => { navigation.navigate('login') };
 
@@ -23,52 +23,66 @@ export function Logup({ navigation }) {
     console.log(data);
   };
 
+  const {
+    handleChange,
+    handleSubmit,
+    handleBlur,
+    values,
+    errors,
+    touched
+  } = useFormik({
+    initialValues: INITIAL_FORM,
+    validationSchema: LogupSchema,
+    onSubmit: submitHandler
+  });
+
   return (
     <View style={formStyles.form}>
       <Image source={logupIcon} style={formStyles.formImage}/>
       <Text style={formStyles.formText}>
         Fill the form to continue
       </Text>
-      <Formik initialValues={INITIAL_FORM} onSubmit={submitHandler}>
-        { handler => {
-          let { handleChange, handleBlur, handleSubmit, values } = handler;
-          return (
-            <Fragment>
-              <Field
-                onChange={handleChange('first_name')}
-                onBlur={handleBlur('first_name')}
-                value={values.first_name}
-                placeholder="First name"
-              />
-              <Field
-                onChange={handleChange('last_name')}
-                onBlur={handleBlur('last_name')}
-                value={values.last_name}
-                placeholder="Last name"
-              />
-              <Field
-                onChange={handleChange('email')}
-                onBlur={handleBlur('email')}
-                value={values.email}
-                placeholder="Email"
-              />
-              <Field
-                onChange={handleChange('username')}
-                onBlur={handleBlur('username')}
-                value={values.username}
-                placeholder="Username"
-              />
-              <Field
-                onChange={handleChange('password')}
-                onBlur={handleBlur('password')}
-                value={values.password}
-                placeholder="Password"
-              />
-              <FormButton onPress={handleSubmit}/>
-            </Fragment>
-          );
-        }}
-      </Formik>
+      <Field
+        placeholder="First name"
+        value={values.first_name}
+        error={errors.first_name}
+        touched={touched.first_name}
+        onBlur={handleBlur('first_name')}
+        onChange={handleChange('first_name')}
+      />
+      <Field
+        placeholder="Last name"
+        error={errors.last_name}
+        value={values.last_name}
+        touched={touched.last_name}
+        onBlur={handleBlur('last_name')}
+        onChange={handleChange('last_name')}
+      />
+      <Field
+        placeholder="Email"
+        value={values.email}
+        error={errors.email}
+        touched={touched.email}
+        onBlur={handleBlur('email')}
+        onChange={handleChange('email')}
+      />
+      <Field
+        placeholder="Username"
+        value={values.username}
+        error={errors.username}
+        touched={touched.username}
+        onBlur={handleBlur('username')}
+        onChange={handleChange('username')}
+      />
+      <Field
+        placeholder="Password"
+        value={values.password}
+        error={errors.password}
+        touched={touched.password}
+        onBlur={handleBlur('password')}
+        onChange={handleChange('password')}
+      />
+      <FormButton onPress={handleSubmit}/>
       <Text style={formStyles.formAnchorText}>
         Already registered? {''}
         <Text style={formStyles.formAnchor} onPress={toLoginForm}>
