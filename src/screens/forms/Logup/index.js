@@ -29,7 +29,8 @@ export function Logup({ navigation }) {
     handleBlur,
     values,
     errors,
-    touched
+    touched,
+    isValid
   } = useFormik({
     initialValues: INITIAL_FORM,
     validationSchema: LogupSchema,
@@ -82,7 +83,7 @@ export function Logup({ navigation }) {
         onBlur={handleBlur('password')}
         onChange={handleChange('password')}
       />
-      <FormButton onPress={handleSubmit}/>
+      <FormButton onPress={handleSubmit} disabled={!isValid}/>
       <Text style={formStyles.formAnchorText}>
         Already registered? {''}
         <Text style={formStyles.formAnchor} onPress={toLoginForm}>

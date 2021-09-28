@@ -6,10 +6,8 @@ password = Yup.string().min(8).label('Password').required();
 export const LogupSchema = Yup.object().shape({
   first_name: Yup.string().label('First name').required(),
   last_name: Yup.string().label('Last name').required(),
-  email: Yup.string().email('Email is invalid'),
+  email: Yup.string().label('Email').email('Email is invalid').required(),
   username, password
 });
 
-export const LoginSchema = Yup.object().shape({
-  username, password
-});
+export const LoginSchema = Yup.object().shape({ username, password });

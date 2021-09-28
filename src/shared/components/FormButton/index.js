@@ -4,13 +4,14 @@ import styles from './styles';
 
 export function FormButton(props) {
 
-  let { text = 'Continue', onPress } = props;
+  let { text = 'Continue', onPress, disabled } = props;
 
   return (
     <TouchableOpacity
+      onPress={onPress}
+      disabled={disabled}
       style={styles.formButton}
-      activeOpacity={0.7}
-      onPress={onPress}>
+      activeOpacity={disabled ? 1 : 0.7}>
       <Text style={styles.buttonText}>
         { text }
       </Text>
