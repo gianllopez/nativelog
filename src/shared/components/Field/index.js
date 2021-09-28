@@ -14,7 +14,7 @@ export function Field(props) {
   });
 
   useEffect(() => {  
-    Animated.timing(fieldAnim, {
+    Animated.timing(animations.field, {
       toValue: focused ? 60 : 50,
       duration: 200,
       useNativeDriver: false
@@ -22,8 +22,8 @@ export function Field(props) {
   }, [focused]);
   
   useEffect(() => {
-    Animated.timing(errorAnim, {
-      toValue: error ? 1 : 0,
+    Animated.timing(animations.error, {
+      toValue: error && touched ? 17 : 0,
       duration: 200,
       useNativeDriver: false
     }).start();
@@ -31,21 +31,22 @@ export function Field(props) {
 
   return (
     <Fragment>
-      <Animated.View style={[styles.field, { height: fieldAnim }]}>
+      <Animated.View style={[styles.field, { height: animations.field }]}>
         <TextInput
           value={value}
           onChangeText={onChange}
           placeholder={placeholder}
           onFocus={() => setFocused(true)}
           onBlur={e => { onBlur(e); setFocused(false) }}
+          autoCompleteType="off"
           style={[
             styles.input,
             placeholder === 'Username' && styles.lowCase
           ]}
-          />
+        />
       </Animated.View>
-      <Animated.Text style={[styles.errorText, { opacity: errorAnim }]}>
-        Complete name must be at leat 22 characters
+      <Animated.Text style={[styles.errorText, { height: animations.error }]}>
+        { error }
       </Animated.Text>
     </Fragment>
   );

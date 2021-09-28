@@ -4,7 +4,6 @@ export default StyleSheet.create({
   field: {
     width: '85%',
     borderRadius: 7,
-    // marginBottom: 10,
     backgroundColor: '#E5E5E5'
   },
   input: {
