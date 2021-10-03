@@ -8,8 +8,7 @@ import { formStyles } from '../styles';
 const logupIcon = require('../../../assets/logup-icon.png');
 
 const INITIAL_FORM = {
-  first_name: '',
-  last_name: '',
+  full_name: '',
   email: '',
   username: '',
   password: ''
@@ -44,20 +43,12 @@ export function Logup({ navigation }) {
         Fill the form to continue
       </Text>
       <Field
-        placeholder="First name"
-        value={values.first_name}
-        error={errors.first_name}
-        touched={touched.first_name}
-        onBlur={handleBlur('first_name')}
-        onChange={handleChange('first_name')}
-      />
-      <Field
-        placeholder="Last name"
-        error={errors.last_name}
-        value={values.last_name}
-        touched={touched.last_name}
-        onBlur={handleBlur('last_name')}
-        onChange={handleChange('last_name')}
+        placeholder="Full name"
+        value={values.full_name}
+        error={errors.full_name}
+        touched={touched.full_name}
+        onBlur={handleBlur('full_name')}
+        onChange={handleChange('full_name')}
       />
       <Field
         placeholder="Email"

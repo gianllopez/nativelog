@@ -27,7 +27,7 @@ export function Field(props) {
       duration: 200,
       useNativeDriver: false
     }).start();
-  }, [error]);
+  }, [error, touched]);
 
   return (
     <Fragment>
