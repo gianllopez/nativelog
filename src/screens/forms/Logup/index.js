@@ -1,9 +1,10 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { AsyncStorage, Image, Text, View } from 'react-native';
 import { useFormik } from 'formik';
 import { LogupSchema } from '../../../shared/schemas';
 import { Field, FormButton } from '../../../shared/components';
 import { formStyles } from '../styles';
+import { post } from '../../../services/api';
 
 const logupIcon = require('../../../assets/logup-icon.png');
 
@@ -16,10 +17,14 @@ const INITIAL_FORM = {
 
 export function Logup({ navigation }) {  
 
-  const toLoginForm = () => { navigation.navigate('login') };
+  const toLoginForm = () => { navigation.navigate('login') };  
 
-  const submitHandler = data => {
-    console.log(data);
+  const submitHandler = async data => {
+    let { errors, response } = await post('/logup', data);
+    if (errors) { setErrors(errors) }
+    else {
+      console.log(response);
+    };
   };
 
   const {
@@ -29,7 +34,8 @@ export function Logup({ navigation }) {
     values,
     errors,
     touched,
-    isValid
+    isValid,
+    setErrors
   } = useFormik({
     initialValues: INITIAL_FORM,
     validationSchema: LogupSchema,
