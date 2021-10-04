@@ -37,5 +37,17 @@ export default StyleSheet.create({
     color: 'white',
     marginRight: 10,
     fontSize: 20
+  },
+  logOutBtn: {
+    position: 'absolute',
+    top: 30,
+    right: -2,
+    borderWidth: 2,
+    borderColor: '#FF5252',
+    paddingVertical: 5,
+    paddingRight: 10,
+    paddingLeft: 15,
+    borderTopLeftRadius: 25,
+    borderBottomLeftRadius: 25
   }
 });
