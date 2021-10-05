@@ -12,6 +12,7 @@
     "axios": "^0.22.0",
     "expo": "~42.0.1",
     "expo-font": "^9.2.1",
+    "expo-secure-store": "~10.2.0",
     "formik": "^2.2.9",
     "react": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",

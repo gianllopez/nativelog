@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
+import { AuthContext } from '../../../App';
 import { GithubLogo, LogOutIcon } from '../../shared/components/vectors';
 import styles from './styles';
 
@@ -7,8 +8,19 @@ const homeIcon = require('../../assets/home-icon.png');
 
 export function Home() {
 
+  const { removeToken } = useContext(AuthContext);
+
   const logOut = () => {
-    Alert.prompt('Are you sure you want to log out?') // incomplete
+    Alert.alert(
+      'Confirm', 'Are you sure you want to log out?',
+      [
+        {
+          text: 'Yes, log out',
+          onPress: async () => await removeToken()
+        },
+        { text: 'No, cancel' }
+      ]
+    );
   };
 
   return (
@@ -18,7 +30,7 @@ export function Home() {
         <Text style={{ fontWeight: 'bold' }}>
           nativelog
         </Text>
-      </Text>    
+      </Text>
       <Image source={homeIcon} style={styles.homeImage}/>
       <Text style={styles.description}>
         This is a simple user log system made with {}

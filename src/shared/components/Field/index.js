@@ -38,6 +38,7 @@ export function Field(props) {
           placeholder={placeholder}
           onFocus={() => setFocused(true)}
           onBlur={e => { onBlur(e); setFocused(false) }}
+          secureTextEntry={placeholder === 'Password'}
           autoCompleteType="off"
           style={[
             styles.input,

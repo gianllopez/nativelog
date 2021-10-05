@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AsyncStorage, Image, Text, View } from 'react-native';
 import { useFormik } from 'formik';
 import { LogupSchema } from '../../../shared/schemas';
 import { Field, FormButton } from '../../../shared/components';
 import { formStyles } from '../styles';
 import { post } from '../../../services/api';
+import { AuthContext } from '../../../../App';
 
 const logupIcon = require('../../../assets/logup-icon.png');
 
@@ -15,16 +16,16 @@ const INITIAL_FORM = {
   password: ''
 };
 
-export function Logup({ navigation }) {  
+export function Logup({ navigation }) {
 
-  const toLoginForm = () => { navigation.navigate('login') };  
+  const { writeToken } = useContext(AuthContext);
+
+  const toLoginForm = () => { navigation.navigate('login') };
 
   const submitHandler = async data => {
     let { errors, response } = await post('/logup', data);
-    if (errors) { setErrors(errors) }
-    else {
-      console.log(response);
-    };
+    if (errors) setErrors(errors);
+    else await writeToken(response.token);
   };
 
   const {

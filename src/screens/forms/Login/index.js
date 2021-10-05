@@ -14,7 +14,7 @@ const INITIAL_FORM = {
 
 export function Login({ navigation }) {
 
-  const toLogupForm = () => { navigation.navigate('home') };
+  const toLogupForm = () => { navigation.navigate('logup') };
 
   const submitHandler = data => {
     console.log(data);
