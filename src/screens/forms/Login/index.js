@@ -1,9 +1,12 @@
-import { useFormik } from 'formik';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, Image } from 'react-native';
-import { Field, FormButton } from '../../../shared/components';
+import { useFormik } from 'formik';
+import { post } from '../../../services/api';
 import { LoginSchema } from '../../../shared/schemas';
+import { Field, FormButton } from '../../../shared/components';
 import { formStyles } from '../styles';
+import { AuthContext } from '../../../../App';
+import styles from './styles';
 
 const loginIcon = require('../../../assets/login-icon.png');
 
@@ -14,10 +17,21 @@ const INITIAL_FORM = {
 
 export function Login({ navigation }) {
 
+  const { writeToken } = useContext(AuthContext);
+
   const toLogupForm = () => { navigation.navigate('logup') };
 
-  const submitHandler = data => {
-    console.log(data);
+  const submitHandler = async data => {
+    let { errors, response } = await post('/login', data);
+    if (errors) {
+      if (errors.invalid) {
+        setStatus({ error: errors.message });
+      } else {
+        alert('Something went wrong, try again later.');
+      };
+    } else {
+      await writeToken(response.token);
+    };
   };
 
   const {
@@ -27,7 +41,9 @@ export function Login({ navigation }) {
     values,
     errors,
     touched,
-    isValid
+    isValid,
+    setStatus,
+    status
   } = useFormik({
     initialValues: INITIAL_FORM,
     validationSchema: LoginSchema,
@@ -40,6 +56,7 @@ export function Login({ navigation }) {
       <Text style={formStyles.formText}>
         Complete with your credentials
       </Text>
+      <Text style={styles.errorText}>{ status?.error }</Text>
       <Field
         placeholder="Username"
         value={values.username}
