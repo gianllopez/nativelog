@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Fragment } from 'react';
-import { TextInput, Animated, Text } from 'react-native';
+import { TextInput, Animated } from 'react-native';
 import styles from './styles';
 
 export function Field(props) {

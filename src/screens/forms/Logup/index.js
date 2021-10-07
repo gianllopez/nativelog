@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AsyncStorage, Image, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
 import { useFormik } from 'formik';
 import { LogupSchema } from '../../../shared/schemas';
 import { Field, FormButton } from '../../../shared/components';

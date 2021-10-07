@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image } from 'react-native';
 import { useFormik } from 'formik';
 import { post } from '../../../services/api';
 import { LoginSchema } from '../../../shared/schemas';
 import { Field, FormButton } from '../../../shared/components';
-import { formStyles } from '../styles';
 import { AuthContext } from '../../../../App';
+import { formStyles } from '../styles';
 import styles from './styles';
 
 const loginIcon = require('../../../assets/login-icon.png');

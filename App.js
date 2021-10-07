@@ -2,11 +2,11 @@ import React, { useState, useMemo, useEffect, Fragment } from 'react';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { write, remove } from './src/shared/utils/token-store';
 import { useFonts } from 'expo-font';
 import { Ubuntu_400Regular, Ubuntu_700Bold } from '@expo-google-fonts/ubuntu';
 import { Home, Login, Logup } from './src/screens';
 import styles from './styles';
-import { get, write, remove } from './src/shared/utils/token-store';
 
 const Stack = createNativeStackNavigator();
 
