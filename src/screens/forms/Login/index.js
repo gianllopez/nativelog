@@ -3,6 +3,7 @@ import { View, Text, Image } from 'react-native';
 import { useFormik } from 'formik';
 import { post } from '../../../services/api';
 import { LoginSchema } from '../../../shared/schemas';
+import { capitalize } from '../../../shared/utils';
 import { Field, FormButton } from '../../../shared/components';
 import { AuthContext } from '../../../../App';
 import { formStyles } from '../styles';
@@ -50,6 +51,15 @@ export function Login({ navigation }) {
     onSubmit: submitHandler
   });
 
+  const fieldProps = name => ({
+    placeholder: capitalize(name),
+    value: values[name],
+    error: errors[name],
+    touched: touched[name],
+    onBlur: handleBlur(name),
+    onChange: handleChange(name)
+  });
+
   return (
     <View style={formStyles.form}>
       <Image source={loginIcon} style={formStyles.formImage}/>
@@ -57,22 +67,8 @@ export function Login({ navigation }) {
         Complete with your credentials
       </Text>
       <Text style={styles.errorText}>{ status?.error }</Text>
-      <Field
-        placeholder="Username"
-        value={values.username}
-        error={errors.username}
-        touched={touched.username}
-        onBlur={handleBlur('username')}
-        onChange={handleChange('username')}
-      />
-      <Field
-        placeholder="Password"
-        value={values.password}
-        error={errors.password}
-        touched={touched.password}
-        onBlur={handleBlur('password')}
-        onChange={handleChange('password')}
-      />
+      <Field {...fieldProps('username')}/>
+      <Field {...fieldProps('password')}/>
       <FormButton
         text="Submit"
         onPress={handleSubmit}

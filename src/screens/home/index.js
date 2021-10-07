@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Image, Linking, Text, TouchableOpacity, View } from 'react-native';
 import { AuthContext } from '../../../App';
 import { GithubLogo, LogOutIcon } from '../../shared/components/vectors';
 import styles from './styles';
@@ -23,6 +23,12 @@ export function Home() {
     );
   };
 
+  const toSourceCode = () => {
+    let repo = 'https://github.com/gianlop3z/nativelog';
+    Linking.openURL(repo)
+      .catch(err => alert('An error has ocurred:', err));
+  };
+
   return (
     <View style={styles.homeScreen}>
       <Text style={styles.homeText}>
@@ -41,7 +47,11 @@ export function Home() {
           Node.js + Express.js
         </Text>
       </Text>
-      <TouchableOpacity style={styles.srcButton} activeOpacity={0.7}>
+      <TouchableOpacity
+        style={styles.srcButton}
+        activeOpacity={0.7}
+        onPress={toSourceCode}
+      >
         <Text style={styles.srcButtonText}>Go to source code</Text>
         <GithubLogo/>
       </TouchableOpacity>
@@ -54,4 +64,5 @@ export function Home() {
       </TouchableOpacity>
     </View>
   );
+
 };
