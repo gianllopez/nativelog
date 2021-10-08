@@ -5,9 +5,10 @@ import styles from './styles';
 
 export function Field(props) {
 
-  let { onChange, onBlur, value, placeholder, error, touched } = props;
+  let { onChange, onBlur, value, placeholder, error, touched, pattern } = props;
 
   const [focused, setFocused] = useState(false);
+
   const [animations] = useState({
     field: new Animated.Value(50),
     error: new Animated.Value(0)
@@ -29,21 +30,24 @@ export function Field(props) {
     }).start();
   }, [error, touched]);
 
+  const patternValidator = entry => {
+    if (entry) {
+      if (pattern.test(entry)) onChange(entry);
+    } else { onChange(entry) };
+  };
+
   return (
     <Fragment>
       <Animated.View style={[styles.field, { height: animations.field }]}>
         <TextInput
           value={value}
-          onChangeText={onChange}
           placeholder={placeholder}
+          onChangeText={patternValidator}
           onFocus={() => setFocused(true)}
           onBlur={e => { onBlur(e); setFocused(false) }}
           secureTextEntry={placeholder === 'Password'}
           autoCompleteType="off"
-          style={[
-            styles.input,
-            placeholder === 'Username' && styles.lowCase
-          ]}
+          style={styles.input}
         />
       </Animated.View>
       <Animated.Text style={[styles.errorText, { height: animations.error }]}>

@@ -24,9 +24,11 @@ export function Logup({ navigation }) {
   const toLoginForm = () => { navigation.navigate('login') };
 
   const submitHandler = async data => {
-    let { errors, response } = await post('/logup', data);
-    if (errors) setErrors(errors);
-    else await writeToken(response.token);
+    if (isValid) {
+      let { errors, response } = await post('/logup', data);
+      if (errors) setErrors(errors);
+      else await writeToken(response.token);
+    };
   };
 
   const {
@@ -37,7 +39,8 @@ export function Logup({ navigation }) {
     errors,
     touched,
     isValid,
-    setErrors
+    setErrors,
+    isSubmitting
   } = useFormik({
     initialValues: INITIAL_FORM,
     validationSchema: LogupSchema,
@@ -59,11 +62,21 @@ export function Logup({ navigation }) {
       <Text style={formStyles.formText}>
         Fill the form to continue
       </Text>
-      <Field {...fieldProps('full_name')}/>
+      <Field
+        {...fieldProps('full_name')}
+        pattern={/(?!.*\s{2})^[a-zA-Z\s]+$/}
+      />
       <Field {...fieldProps('email')}/>
-      <Field {...fieldProps('username')}/>
+      <Field
+        {...fieldProps('username')}
+        pattern={/^[a-z0-9_]*$/}
+      />
       <Field {...fieldProps('password')}/>
-      <FormButton onPress={handleSubmit} disabled={!isValid}/>
+      <FormButton
+        onPress={handleSubmit}
+        disabled={!isValid}
+        isLoading={isSubmitting}
+      />
       <Text style={formStyles.formAnchorText}>
         Already registered? {''}
         <Text style={formStyles.formAnchor} onPress={toLoginForm}>

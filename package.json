@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "expo start",
-    "eject": "expo eject"
+    "build": "expo build:android"
   },
   "dependencies": {
     "@expo-google-fonts/ubuntu": "^0.2.0",

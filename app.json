@@ -1,14 +1,15 @@
 {
   "expo": {
     "name": "nativelog",
+    "icon": "./src/assets/icon.png",
     "slug": "nativelog",
     "version": "1.0.0",
     "orientation": "portrait",
-    "updates": {
-      "fallbackToCacheTimeout": 0
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ]
+    "updates": { "fallbackToCacheTimeout": 0 },
+    "assetBundlePatterns": [ "**/*" ],
+    "android": {
+      "package": "com.gianlop3z.nativelog",
+      "versionCode": 1
+    }
   }
 }

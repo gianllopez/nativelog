@@ -11,7 +11,6 @@ export default StyleSheet.create({
     paddingLeft: 10,
     fontFamily: 'Ubuntu'
   },
-  lowCase: { textTransform: 'lowercase' },
   errorText: {
     width: '85%',
     marginTop: 2.5, marginBottom: 5,

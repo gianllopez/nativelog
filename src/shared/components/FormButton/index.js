@@ -1,10 +1,11 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
+import { Loader } from './Loader';
 import styles from './styles';
 
 export function FormButton(props) {
 
-  let { text = 'Continue', onPress, disabled } = props;
+  let { text = 'Continue', onPress, disabled, isLoading } = props;
 
   return (
     <TouchableOpacity
@@ -12,9 +13,11 @@ export function FormButton(props) {
       disabled={disabled}
       style={styles.formButton}
       activeOpacity={disabled ? 1 : 0.7}>
-      <Text style={styles.buttonText}>
-        { text }
-      </Text>
+      { isLoading ? 
+        <Loader/> :
+        <Text style={styles.buttonText}>
+          { text }
+        </Text> }
     </TouchableOpacity>
   );
 

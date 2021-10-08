@@ -23,15 +23,17 @@ export function Login({ navigation }) {
   const toLogupForm = () => { navigation.navigate('logup') };
 
   const submitHandler = async data => {
-    let { errors, response } = await post('/login', data);
-    if (errors) {
-      if (errors.invalid) {
-        setStatus({ error: errors.message });
+    if (isValid) {
+      let { errors, response } = await post('/login', data);
+      if (errors) {
+        if (errors.invalid) {
+          setStatus({ error: errors.message });
+        } else {
+          alert('Something went wrong, try again later.');
+        };
       } else {
-        alert('Something went wrong, try again later.');
+        await writeToken(response.token);
       };
-    } else {
-      await writeToken(response.token);
     };
   };
 
@@ -44,7 +46,8 @@ export function Login({ navigation }) {
     touched,
     isValid,
     setStatus,
-    status
+    status,
+    isSubmitting
   } = useFormik({
     initialValues: INITIAL_FORM,
     validationSchema: LoginSchema,
@@ -67,12 +70,13 @@ export function Login({ navigation }) {
         Complete with your credentials
       </Text>
       <Text style={styles.errorText}>{ status?.error }</Text>
-      <Field {...fieldProps('username')}/>
+      <Field {...fieldProps('username')} pattern={/^[a-z0-9_]*$/}/>
       <Field {...fieldProps('password')}/>
       <FormButton
         text="Submit"
         onPress={handleSubmit}
         disabled={!isValid}
+        isLoading={isSubmitting}
       />
       <Text style={formStyles.formAnchorText}>
         Still not registered? {''}
