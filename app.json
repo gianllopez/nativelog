@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "nativelog",
+    "name": "Nativelog",
     "icon": "./src/assets/icon.png",
     "slug": "nativelog",
     "version": "1.0.0",

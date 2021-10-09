@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, Fragment } from 'react';
+import React, { useState, useMemo, Fragment } from 'react';
 import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -26,10 +26,6 @@ export default function App() {
       setToken(null);
     }
   }), []);
-
-  useEffect(() => {
-    console.log(token);
-  }, [token]);
 
   const [loadedFonts] = useFonts({
     'Ubuntu': Ubuntu_400Regular,

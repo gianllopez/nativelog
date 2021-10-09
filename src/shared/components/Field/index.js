@@ -32,7 +32,9 @@ export function Field(props) {
 
   const patternValidator = entry => {
     if (entry) {
-      if (pattern.test(entry)) onChange(entry);
+      pattern ?
+        pattern?.test(entry) && onChange(entry) :
+        onChange(entry);      
     } else { onChange(entry) };
   };
 
